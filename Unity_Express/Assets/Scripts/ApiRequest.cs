@@ -9,7 +9,7 @@ public class APIRequest : MonoBehaviour
     // Example of making a GET request to the Express API
     public void GetMessageFromAPI()
     {
-        StartCoroutine(GetRequest("/weapons"));
+        StartCoroutine(GetRequest("/api/weapons"));
     }
 
     // Example of making a POST request to the Express API
