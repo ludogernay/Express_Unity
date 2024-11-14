@@ -7,34 +7,21 @@ public class Coin : MonoBehaviour
 
     void Start()
     {
-        // Optional: Destroy the coin after a certain time to prevent buildup
-        Destroy(gameObject, 15f);
+        // No need to find the GameManager when using the singleton
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Add code to update the player's coin count or score
-            // Example: collision.gameObject.GetComponent<Player>().AddCoin();
-
-            // Notify the spawner that the coin has been collected
-            if (spawner != null)
-            {
-                spawner.CoinCollected();
-            }
-
-            // Destroy the coin
+            GameManager.Instance?.AddCoin(1);
+            spawner?.CoinCollected();
             Destroy(gameObject);
         }
     }
 
     void OnDestroy()
     {
-        // Ensure the coin count is decremented if the coin is destroyed by other means
-        if (spawner != null)
-        {
-            spawner.CoinCollected();
-        }
+        spawner?.CoinCollected();
     }
 }
