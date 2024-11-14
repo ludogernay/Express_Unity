@@ -18,6 +18,30 @@ router.get('/api/weapons', async (req : Request, res : Response) => {
     }
 });
 
+router.get('/api/weapons/search', async (req : Request, res : Response) : Promise<any | Record<string, any>> => {
+    try{
+        const { category } = req.query;
+        if (!category) {
+            return res.status(400).json({ message: "Category is required" });
+        }
+        const weapons = await getAllWeapons();
+        const filteredWeapons = weapons.filter((weapon: any) => weapon.category === category);
+
+        if (filteredWeapons.length === 0) {
+            return res.status(404).json({ message: "No weapons found for this category" });
+        }
+
+        res.status(200).json(filteredWeapons);
+        
+
+    } catch (error : any) {
+        res.status(500).json({ message: error.message });
+    }
+
+
+
+});
+
 router.get('/api/weapons/:id', async (req : Request, res : Response) : Promise<any | Record<string, any>> => {
     try {
         const weapon = await getWeapon(req.params.id);
@@ -71,6 +95,8 @@ router.delete('/api/weapons/:id', async (req : Request, res : Response) : Promis
         res.status(500).json({ message: error.message });
     }
 });
+
+
 
 
 export default router;
