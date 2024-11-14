@@ -4,21 +4,19 @@ using UnityEngine.Networking;
 
 public class APIRequest : MonoBehaviour
 {
-    private string baseURL = "http://localhost:3000"; // Replace with your Express API URL
+    private string baseURL = "http://localhost:3000"; 
 
-    // Example of making a GET request to the Express API
     public void GetMessageFromAPI()
     {
-        StartCoroutine(GetRequest("/weapons"));
+        StartCoroutine(GetRequest("/api/weapons"));
     }
 
-    // Example of making a POST request to the Express API
+   
     public void SendDataToAPI()
     {
-        // Create a sample JSON data object to send
         string jsonData = "{\"name\": \"Unity\", \"type\": \"Game Engine\"}";
 
-        StartCoroutine(PostRequest("/api/wepaons", jsonData));
+        StartCoroutine(PostRequest("/api/weapons", jsonData));
     }
 
     // Coroutine for GET request
@@ -26,10 +24,8 @@ public class APIRequest : MonoBehaviour
     {
         UnityWebRequest request = UnityWebRequest.Get(baseURL + endpoint);
 
-        // Wait for the request to complete
         yield return request.SendWebRequest();
 
-        // Check if the request was successful
         if (request.result == UnityWebRequest.Result.Success)
         {
             Debug.Log("GET Request Successful! Response: " + request.downloadHandler.text);
