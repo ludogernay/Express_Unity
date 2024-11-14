@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { connectDB } from './connect_db';
 import router from './routes/weapon';
-
+dotenv.config();
 
 connectDB(process.env.MONGODB_URL!).then();
 const app = express();
