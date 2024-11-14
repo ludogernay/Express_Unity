@@ -6,6 +6,7 @@ import {createWeapon} from "../API/createWeapon";
 import {updateWeapon} from "../API/updateWeapon";
 import {deleteWeapon} from "../API/deleteWeapon";
 import mongoose from "mongoose";
+import {getWeaponLinks} from "../API/getWeaponLinks";
 
 const router = Router();
 
@@ -42,14 +43,26 @@ router.get('/api/weapons/search', async (req : Request, res : Response) : Promis
 
 });
 
-router.get('/api/weapons/:id', async (req : Request, res : Response) : Promise<any | Record<string, any>> => {
+router.get('/api/weapons/:id', async (req: Request, res: Response): Promise<any | Record<string, any>> => {
     try {
-        const weapon = await getWeapon(req.params.id);
+        const weaponId = new mongoose.Types.ObjectId(req.params.id);
+        const weapon = await getWeapon(weaponId);
+
         if (!weapon) {
             return res.status(404).json({ message: "Weapon not found" });
         }
-        res.status(200).json(weapon);
-    } catch (error : any) {
+
+        // Récupère les liens vers l'arme précédente et suivante
+        const links = await getWeaponLinks(weaponId);
+
+        res.status(200).json({
+            weapon,
+            links: {
+                previous: `/api/weapons/${links.previous}`,
+                next: `/api/weapons/${links.next}`
+            }
+        });
+    } catch (error: any) {
         res.status(500).json({ message: error.message });
     }
 });
