@@ -345,6 +345,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -2209,7 +2222,91 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Button 1_0: 1945269359277807493
+      Button 1_1: 7295293355442117084
+      Button 1_10: -90808845503963651
+      Button 1_11: -2011874510567571847
+      Button 1_12: 464490792671463974
+      Button 1_13: -1137569842067167340
+      Button 1_14: -3589834776360712378
+      Button 1_15: -249167850586077093
+      Button 1_16: 2724950893418799361
+      Button 1_17: -3378758993889402300
+      Button 1_18: 6843508637955150744
+      Button 1_19: 2870130833190776929
+      Button 1_2: -4564723269634655129
+      Button 1_20: 7355544782399977590
+      Button 1_21: -311335979351087520
+      Button 1_22: 7614516374872105148
+      Button 1_23: -3828910056138948068
+      Button 1_24: 5596504055592627349
+      Button 1_25: -4216777188142465789
+      Button 1_26: -6153389911712941814
+      Button 1_27: -4785832228311161320
+      Button 1_28: -458953823296515453
+      Button 1_29: 7450026376128257281
+      Button 1_3: -4678885998541973743
+      Button 1_30: 2934207940529698131
+      Button 1_31: 6980960877719606166
+      Button 1_32: 797554800544107018
+      Button 1_33: -7756434667564987394
+      Button 1_34: -7746635975940623780
+      Button 1_35: -6355154961874057036
+      Button 1_36: -2432082916547579358
+      Button 1_37: -8497780173101514262
+      Button 1_38: 2796622880847589065
+      Button 1_39: -1559759088421366087
+      Button 1_4: 8859924932756759494
+      Button 1_40: -2318736224633652532
+      Button 1_41: -7549273974316072331
+      Button 1_42: -8219948931598899893
+      Button 1_43: 3386792154993548365
+      Button 1_44: 5247330685525685282
+      Button 1_45: -5378315605608424356
+      Button 1_46: 8430659059201103770
+      Button 1_47: 1250942844266237401
+      Button 1_48: -1019280497559459183
+      Button 1_49: -4905320754082737635
+      Button 1_5: 6710314133941613129
+      Button 1_50: 2156235300079831489
+      Button 1_51: 4307912853106939826
+      Button 1_52: 3594312361956273209
+      Button 1_53: 538603451650410745
+      Button 1_54: 1539162615874106843
+      Button 1_55: 2791462448974041308
+      Button 1_56: -7972978018859828878
+      Button 1_57: 5332030150830346824
+      Button 1_58: -978345392394914828
+      Button 1_59: -4167136181035095125
+      Button 1_6: 8842439337349065659
+      Button 1_60: -101783237528828932
+      Button 1_61: -2719876597353708611
+      Button 1_62: 6950216367901843085
+      Button 1_63: -6808354476978255702
+      Button 1_64: 2406557905742421859
+      Button 1_65: 4686078851428261695
+      Button 1_66: -8105333406358541755
+      Button 1_67: -1452865604757596530
+      Button 1_68: 2819397013372212077
+      Button 1_69: 5196765022736277251
+      Button 1_7: 2678220786396507881
+      Button 1_70: 3433115715223474558
+      Button 1_71: 4602798220072498617
+      Button 1_72: 4922668620036470542
+      Button 1_73: -9196156878794817696
+      Button 1_74: -816657357136908560
+      Button 1_75: -3247512171095564917
+      Button 1_76: 7354823616375086253
+      Button 1_77: 8872653182936429629
+      Button 1_78: -5711581094015099629
+      Button 1_79: -6061914045152877338
+      Button 1_8: 7815670086113990372
+      Button 1_80: 2661543659738084089
+      Button 1_81: 8344822827117754375
+      Button 1_82: 2436815634587985972
+      Button 1_83: 7490040733059858362
+      Button 1_9: 8525462612977820115
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
