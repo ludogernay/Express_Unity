@@ -4,62 +4,60 @@ using UnityEngine.Networking;
 
 public class APIRequest : MonoBehaviour
 {
-    private string baseURL = "http://localhost:3000"; 
+    private string baseURL = "http://localhost:3000";
+
+    [System.Serializable]
+    public class WeaponData
+    {
+        public string name;
+        public string type;
+        public string price;
+    }
 
     public void GetMessageFromAPI()
     {
-        StartCoroutine(GetRequest("/api/weapons"));
+        StartCoroutine(SendRequest("/api/weapons", "GET"));
     }
 
-   
     public void SendDataToAPI()
     {
-        string jsonData = "{\"name\": \"Unity\", \"type\": \"Game Engine\"}";
-
-        StartCoroutine(PostRequest("/api/weapons", jsonData));
+        WeaponData data = new WeaponData { name = "Unity", type = "Game Engine" };
+        string jsonData = JsonUtility.ToJson(data);
+        StartCoroutine(SendRequest("/api/weapons", "POST", jsonData));
     }
 
-    // Coroutine for GET request
-    private IEnumerator GetRequest(string endpoint)
+    private IEnumerator SendRequest(string endpoint, string method = "GET", string jsonData = null)
     {
-        UnityWebRequest request = UnityWebRequest.Get(baseURL + endpoint);
-
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
+        UnityWebRequest request;
+        if (method == "POST")
         {
-            Debug.Log("GET Request Successful! Response: " + request.downloadHandler.text);
+            request = new UnityWebRequest(baseURL + endpoint, method);
+            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
+            request.uploadHandler = new UploadHandlerRaw(jsonToSend);
+            request.SetRequestHeader("Content-Type", "application/json");
         }
         else
         {
-            Debug.LogError("GET Request Failed! Error: " + request.error);
+            request = UnityWebRequest.Get(baseURL + endpoint);
         }
-    }
-
-    // Coroutine for POST request
-    private IEnumerator PostRequest(string endpoint, string jsonData)
-    {
-        UnityWebRequest request = new UnityWebRequest(baseURL + endpoint, "POST");
-
-        // Convert string data to byte array
-        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
-
-        // Set the content type header
-        request.uploadHandler = new UploadHandlerRaw(jsonToSend);
         request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
+        request.timeout = 10;
 
-        // Wait for the request to complete
         yield return request.SendWebRequest();
 
-        // Check if the request was successful
         if (request.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("POST Request Successful! Response: " + request.downloadHandler.text);
+            Debug.Log($"{method} Request Successful! Response: {request.downloadHandler.text}");
+
+            if (method == "GET")
+            {
+                WeaponData weapon = JsonUtility.FromJson<WeaponData>(request.downloadHandler.text);
+                Debug.Log("Weapon Name: " + weapon.name + ", Type: " + weapon.type);
+            }
         }
         else
         {
-            Debug.LogError("POST Request Failed! Error: " + request.error);
+            Debug.LogError($"{method} Request Failed! Error: " + request.error);
         }
     }
 }
