@@ -72,7 +72,7 @@ router.get('/api/weapons/:id', async (req: Request, res: Response): Promise<any 
 router.post('/api/weapons', async (req : Request, res : Response) => {
     try {
         const weapon = await createWeapon(req.body);
-        res.status(201).json(weapon);
+        res.status(204).json(weapon);
     } catch (error : any) {
         res.status(500).json({ message: error.message });
     }
@@ -88,7 +88,7 @@ router.patch('/api/weapons/:id', async (req : Request, res : Response) : Promise
         if (!weapon) {
             return res.status(404).json({ message: "Weapon not found" });
         }
-        res.status(200).json(weapon);
+        res.status(204).json(weapon);
         return weapon;
     } catch (error : any) {
         res.status(500).json({ message: error.message });
@@ -121,7 +121,7 @@ router.patch('/api/players/:id', async (req : Request, res : Response) : Promise
         if (!player) {
             return res.status(404).json({ message: "Player not found" });
         }
-        res.status(200).json(player);
+        res.status(201).json(player);
         return player;
     } catch (error : any) {
         res.status(500).json({ message: error.message });
