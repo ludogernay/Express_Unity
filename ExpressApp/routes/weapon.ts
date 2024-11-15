@@ -223,7 +223,7 @@ router.get('/api/weapons/:id', async (req: Request, res: Response): Promise<any 
 router.post('/api/weapons', async (req : Request, res : Response) => {
     try {
         const weapon = await createWeapon(req.body);
-        res.status(204).json(weapon);
+        res.status(201).json(weapon);
     } catch (error : any) {
         res.status(500).json({ message: error.message });
     }
@@ -281,7 +281,7 @@ router.patch('/api/weapons/:id', async (req : Request, res : Response) : Promise
         if (!weapon) {
             return res.status(404).json({ message: "Weapon not found" });
         }
-        res.status(204).json(weapon);
+        res.status(201).json(weapon);
         return weapon;
     } catch (error : any) {
         res.status(500).json({ message: error.message });
