@@ -4,7 +4,7 @@ import Weapon from "../model/weaponModel";
 export async function getAllWeapons(): Promise<WeaponData[]> {
     try {
         const weapons = await Weapon.find().exec();
-        if (!weapons || weapons.length === 0) {
+        if (!weapons) {
             throw new Error("No weapons found");
         }else{
             console.log(weapons);
