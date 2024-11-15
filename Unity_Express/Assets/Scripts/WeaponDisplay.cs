@@ -15,7 +15,6 @@ public class WeaponDisplay : MonoBehaviour
         public string category;
         public string price;
         public string url;
-
     }
 
     public class ApiResponse
@@ -23,18 +22,28 @@ public class WeaponDisplay : MonoBehaviour
         public WeaponData weapon;
     }
 
-    // Références aux éléments UI
-    public TextMeshProUGUI weaponNameText;
-    public TextMeshProUGUI weaponPriceText;
-    public Image weaponImage;
+    // Références aux éléments UI pour 3 armes
+    public TextMeshProUGUI weapon1NameText;
+    public TextMeshProUGUI weapon1PriceText;
+    public Image weapon1Image;
+
+    public TextMeshProUGUI weapon2NameText;
+    public TextMeshProUGUI weapon2PriceText;
+    public Image weapon2Image;
+
+    public TextMeshProUGUI weapon3NameText;
+    public TextMeshProUGUI weapon3PriceText;
+    public Image weapon3Image;
 
     void Start()
     {
-        // Appel de la fonction pour charger et afficher l'arme
-        StartCoroutine(GetWeaponData("/api/weapons/67355f9e5ff4d27cecea2e8d")); // Exemple d'ID d'arme
+        // Appel de la fonction pour charger et afficher les armes
+        StartCoroutine(GetWeaponData("/api/weapons/67355f9e5ff4d27cecea2e8d", weapon1NameText, weapon1PriceText, weapon1Image));
+        StartCoroutine(GetWeaponData("/api/weapons/67355ffd1c8b3c3130463815", weapon2NameText, weapon2PriceText, weapon2Image)); // Remplacer par l'ID réel
+        StartCoroutine(GetWeaponData("/api/weapons/6736b7a701706e33a770bb50", weapon3NameText, weapon3PriceText, weapon3Image)); // Remplacer par l'ID réel
     }
 
-    private IEnumerator GetWeaponData(string endpoint)
+    private IEnumerator GetWeaponData(string endpoint, TextMeshProUGUI weaponNameText, TextMeshProUGUI weaponPriceText, Image weaponImage)
     {
         UnityWebRequest request = UnityWebRequest.Get(baseURL + endpoint);
 
@@ -53,7 +62,7 @@ public class WeaponDisplay : MonoBehaviour
             weaponPriceText.text = $"Price: {weapon.price}";
 
             // Charger l'image depuis l'URL
-            StartCoroutine(LoadImage(weapon.url));
+            StartCoroutine(LoadImage(weapon.url, weaponImage));
         }
         else
         {
@@ -61,8 +70,7 @@ public class WeaponDisplay : MonoBehaviour
         }
     }
 
-
-    private IEnumerator LoadImage(string imageUrl)
+    private IEnumerator LoadImage(string imageUrl, Image weaponImage)
     {
         Debug.Log("Image URL: " + imageUrl);
 

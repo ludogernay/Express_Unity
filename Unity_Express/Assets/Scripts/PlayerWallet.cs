@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 public class PlayerWallet : MonoBehaviour
 {
     // L'URL de ton API (ajustez en fonction de ton environnement)
-    private string apiUrl = "http://localhost:3000/api/players/";
+    private string apiUrl = "http://localhost:3000/api/players/Test";
 
     // ID du joueur (tu devras avoir ce ID de quelque manière dans ton jeu)
     public string playerId;
@@ -14,11 +14,11 @@ public class PlayerWallet : MonoBehaviour
     public void IncreaseWallet()
     {
         // Récupérer le portefeuille actuel et l'augmenter de 1
-        StartCoroutine(UpdatePlayerWallet("test", 1));
+        StartCoroutine(UpdatePlayerWallet("Test", 1));
     }
 
     // Coroutine pour envoyer la requête PATCH
-    private IEnumerator UpdatePlayerWallet(string playerId, int amountToAdd)
+    private IEnumerator UpdatePlayerWallet(string playerName, int amountToAdd)
     {
         // Crée un objet contenant les données à envoyer (nom et portefeuille)
         var playerData = new
@@ -31,7 +31,7 @@ public class PlayerWallet : MonoBehaviour
         string json = JsonUtility.ToJson(playerData);
 
         // Crée la requête PATCH
-        UnityWebRequest request = new UnityWebRequest(apiUrl + playerId, "PATCH");
+        UnityWebRequest request = new UnityWebRequest(apiUrl + playerName, "PATCH");
         byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
 
         // Définit les paramètres de la requête

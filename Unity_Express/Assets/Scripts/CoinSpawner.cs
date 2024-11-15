@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-
 public class CoinSpawner : MonoBehaviour
 {
     public GameObject coinPrefab;    // Assign the coin prefab in the Inspector
@@ -9,6 +8,7 @@ public class CoinSpawner : MonoBehaviour
     public float spawnAreaWidth = 10f; // Width of the spawn area
 
     private int currentCoinCount = 0;
+    public PlayerWallet playerWallet;
 
     void Start()
     {
@@ -46,5 +46,11 @@ public class CoinSpawner : MonoBehaviour
     public void CoinCollected()
     {
         currentCoinCount--;
+        // Appeler la méthode IncreaseWallet lorsque la pièce est collectée
+        if (playerWallet != null)
+        {
+            playerWallet.IncreaseWallet();  // Ajoute 1 au portefeuille du joueur
+        }
+
     }
 }
