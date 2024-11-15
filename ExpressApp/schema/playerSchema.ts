@@ -6,7 +6,8 @@ const playerSchema = new mongoose.Schema({
         required: true
     },
     wallet: {
-        type: Number
+        type: Number,
+        required : true
     }
 }, { timestamps: true });
 

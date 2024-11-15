@@ -5,6 +5,7 @@ import {getWeapon} from "../API/getWeapon";
 import {createWeapon} from "../API/createWeapon";
 import {updateWeapon} from "../API/updateWeapon";
 import {deleteWeapon} from "../API/deleteWeapon";
+import {getPlayer} from "../API/getPlayer";
 import {updatePlayer} from "../API/updatePlayer";
 import mongoose from "mongoose";
 import {getWeaponLinks} from "../API/getWeaponLinks";
@@ -127,5 +128,20 @@ router.patch('/api/players/:id', async (req : Request, res : Response) : Promise
     }
 });
 
+router.get('/api/players/:id', async (req: Request, res: Response): Promise<any | Record<string, any>> => {
+    try {
+        const playerId = new mongoose.Types.ObjectId(req.params.id);
+        const player = await getPlayer(playerId);
+
+        if (!player) {
+            return res.status(404).json({ message: "Player not found" });
+        }
+        res.status(200).json({
+            player
+        });
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 export default router;
