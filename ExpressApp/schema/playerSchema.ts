@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import {ObjectId} from "mongodb";
 
 const playerSchema = new mongoose.Schema({
     name: {
@@ -7,8 +6,8 @@ const playerSchema = new mongoose.Schema({
         required: true
     },
     wallet: {
-        type: [mongoose.Schema.Types.ObjectId]
+        type: Number
     }
 }, { timestamps: true });
 
-export default mongoose.model("Player", playerSchema);
+export default playerSchema;
