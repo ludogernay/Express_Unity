@@ -258,7 +258,7 @@ router.post('/api/weapons', async (req : Request, res : Response) => {
  *               price:
  *                 type: number
  *     responses:
- *       200:
+ *       201:
  *         description: Weapon updated successfully
  *         content:
  *           application/json:
