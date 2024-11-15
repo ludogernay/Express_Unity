@@ -6,11 +6,10 @@ using UnityEngine.Networking;
 
 public class PlayerWallet : MonoBehaviour
 {
-    // L'URL de ton API (ajustez en fonction de ton environnement)
+    // L'URL de ton API 
     private string apiUrl = "http://localhost:3000/api/players/";
     private int getWallet;
 
-    // ID du joueur (tu devras avoir ce ID de quelque manière dans ton jeu)
     [System.Serializable]
     public class PlayerData
     {

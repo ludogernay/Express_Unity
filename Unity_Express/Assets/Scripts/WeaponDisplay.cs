@@ -39,8 +39,8 @@ public class WeaponDisplay : MonoBehaviour
     {
         // Appel de la fonction pour charger et afficher les armes
         StartCoroutine(GetWeaponData("/api/weapons/67355f9e5ff4d27cecea2e8d", weapon1NameText, weapon1PriceText, weapon1Image));
-        StartCoroutine(GetWeaponData("/api/weapons/67355ffd1c8b3c3130463815", weapon2NameText, weapon2PriceText, weapon2Image)); // Remplacer par l'ID réel
-        StartCoroutine(GetWeaponData("/api/weapons/6736b7a701706e33a770bb50", weapon3NameText, weapon3PriceText, weapon3Image)); // Remplacer par l'ID réel
+        StartCoroutine(GetWeaponData("/api/weapons/67355ffd1c8b3c3130463815", weapon2NameText, weapon2PriceText, weapon2Image));
+        StartCoroutine(GetWeaponData("/api/weapons/6736b7a701706e33a770bb50", weapon3NameText, weapon3PriceText, weapon3Image)); 
     }
 
     private IEnumerator GetWeaponData(string endpoint, TextMeshProUGUI weaponNameText, TextMeshProUGUI weaponPriceText, Image weaponImage)
