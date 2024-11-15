@@ -8,7 +8,7 @@ const swaggerSpec = require('./swagger');
 
 dotenv.config();
 
-connectDB("mongodb+srv://ludogernay:Ludovic06@cluster0.gsq3v.mongodb.net/Expres").then();
+connectDB(process.env.MONGODB_URL!).then();
 const app = express();
 const port = 3000;
 app.use(express.json());
